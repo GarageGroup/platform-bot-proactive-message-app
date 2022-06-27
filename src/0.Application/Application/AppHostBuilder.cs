@@ -9,9 +9,6 @@ using PrimeFuncPack;
 
 namespace GGroupp.Platrom.Bot.ProactiveMessage.Send;
 
-using IConversationGetFunc = IAsyncValueFunc<ConversationGetIn, Result<ConversationGetOut, ConversationGetFailure>>;
-using IConversationContinueFunc = IAsyncValueFunc<ConversationContinueIn, Result<Unit, ConversationContinueFailure>>;
-
 internal static class AppHostBuilder
 {
     internal static IHostBuilder ConfigureMessageSendQueueProcesor(this IHostBuilder builder)
