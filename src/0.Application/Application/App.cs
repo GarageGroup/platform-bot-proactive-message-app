@@ -16,7 +16,7 @@ internal static class App
         =>
         new HostBuilder()
         .ConfigureSocketsHttpHandlerProvider()
-        .ConfigureMessageSendQueueProcesor()
+        .ConfigureMessageSendQueueHandler()
         .ConfigureStandardLogging()
         .Build();
 }
