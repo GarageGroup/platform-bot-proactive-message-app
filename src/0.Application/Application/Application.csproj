@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>GGroupp.Platrom.Bot.ProactiveMessage.Send</RootNamespace>
+    <AssemblyName>GGroupp.Platrom.Bot.ProactiveMessage.Send.Application</AssemblyName>
+    <Version>1.0.0-preview.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\1.Queue\Queue\Queue.csproj" />
+    <ProjectReference Include="..\..\2.Logic\Logic\Logic.csproj" />
+    <ProjectReference Include="..\..\3.Conversation.Continue\Conversation.Continue\Conversation.Continue.csproj" />
+    <ProjectReference Include="..\..\3.Conversation.Get\Conversation.Get\Conversation.Get.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GGroupp.Infra.Azure.WebJobs.Logging" Version="1.0.0" />
+    <PackageReference Include="GGroupp.Infra.Azure.WebJobs.Storage.Queues" Version="1.0.0" />
+    <PackageReference Include="GGroupp.Infra.Bot.Builder.Integration.CosmosApi" Version="1.0.0" />
+    <PackageReference Include="GGroupp.Infra.Http.SocketsHandlerProvider" Version="2.3.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>GGroupp.Platrom.Bot.ProactiveMessage.Send</RootNamespace>
+    <AssemblyName>GGroupp.Platrom.Bot.ProactiveMessage.Send.Logic</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Logic.InOut\Logic.InOut.csproj" />
+    <ProjectReference Include="..\..\3.Conversation.Get\Conversation.Get.InOut\Conversation.Get.InOut.csproj" />
+    <ProjectReference Include="..\..\3.Conversation.Continue\Conversation.Continue.InOut\Conversation.Continue.InOut.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EarlyFuncPack.Core.AsyncPipeline" Version="0.2.0" />
+    <PackageReference Include="PrimeFuncPack.Core.Func.Abstractions.AsyncValue" Version="2.0.0" />
+    <PackageReference Include="PrimeFuncPack.Dependency.Core" Version="2.0.2" />
+  </ItemGroup>
+
+</Project>
