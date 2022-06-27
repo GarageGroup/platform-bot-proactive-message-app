@@ -21,7 +21,7 @@ partial class ConversationGetFunc
         ConversationGetIn input, CancellationToken cancellationToken)
     {
         using var cosmosApi = cosmosApiProvider.Invoke();
-        return await InnerInvokeAsync(cosmosApi, input, cancellationToken);
+        return await InnerInvokeAsync(cosmosApi, input, cancellationToken).ConfigureAwait(false);
     }
 
     private static ValueTask<Result<ConversationGetOut, ConversationGetFailure>> InnerInvokeAsync(
