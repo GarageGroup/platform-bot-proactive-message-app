@@ -12,29 +12,22 @@ using IConversationContinueFunc = IAsyncValueFunc<ConversationContinueIn, Result
 internal sealed partial class ConversationContinueFunc : IConversationContinueFunc
 {
     public static ConversationContinueFunc Create(
-        IConfiguration configuration,
-        ConversationContinueOption option,
-        ISocketsHttpHandlerProvider? handlerProvider,
-        ILoggerFactory? loggerFactory)
+        IConfiguration configuration, ISocketsHttpHandlerProvider? handlerProvider, ILoggerFactory? loggerFactory)
     {
         _ = configuration ?? throw new ArgumentNullException(nameof(configuration));
-        _ = option ?? throw new ArgumentNullException(nameof(option));
 
-        return new(configuration, option, handlerProvider, loggerFactory);
+        return new(configuration, handlerProvider, loggerFactory);
     }
 
     private readonly Lazy<BotAdapter> lazyAdapter;
 
-    private readonly ConversationContinueOption option;
+    private readonly string botAppId;
 
     private ConversationContinueFunc(
-        IConfiguration configuration,
-        ConversationContinueOption option,
-        ISocketsHttpHandlerProvider? handlerProvider,
-        ILoggerFactory? loggerFactory)
+        IConfiguration configuration, ISocketsHttpHandlerProvider? handlerProvider, ILoggerFactory? loggerFactory)
     {
         lazyAdapter = new(CreateBotAdapter);
-        this.option = option;
+        botAppId = configuration.GetValue("MicrosoftAppId", string.Empty);
 
         BotAdapter CreateBotAdapter()
             =>

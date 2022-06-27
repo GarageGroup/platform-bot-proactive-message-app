@@ -21,26 +21,16 @@ internal static class AppHostBuilder
 
     private static Dependency<IQueueItemProcessor> UseMessageSendQueueItemProcesor()
         =>
-        UseConversationGetApi().With(
-            UseConversationContinueApi())
-        .UseMessageSendLogic()
-        .UseMessageSendQueue();
-
-    private static Dependency<IConversationGetFunc> UseConversationGetApi()
-        =>
         PrimaryHandler.UseStandardSocketsHttpHandler()
         .UseLogging(
             sp => sp.GetRequiredService<ILoggerFactory>().CreateLogger("ProactiveMessageSend"))
         .UseCosmosApi(
             sp => sp.GetConfiguration().GetSection("CosmosApi").GetCosmosApiOption())
-        .UseConversationGetApi();
-
-    private static Dependency<IConversationContinueFunc> UseConversationContinueApi()
-        =>
-        Dependency.From(
-            GetConfiguration,
-            sp => sp.GetConfiguration().GetConversationContinueOption())
-        .UseConversationContinueApi();
+        .UseConversationGetApi()
+        .With(
+            Dependency.From(GetConfiguration).UseConversationContinueApi())
+        .UseMessageSendLogic()
+        .UseMessageSendQueue();
 
     private static IConfiguration GetConfiguration(this IServiceProvider serviceProvider)
         =>
@@ -52,9 +42,4 @@ internal static class AppHostBuilder
             baseAddress: new(section.GetValue<string>("BaseAddressUrl")),
             masterKey: section.GetValue<string>("MasterKey"),
             databaseId: section.GetValue<string>("DatabaseId"));
-
-    private static ConversationContinueOption GetConversationContinueOption(this IConfiguration configuration)
-        =>
-        new(
-            botId: configuration.GetValue<string>("MicrosoftAppId"));
 }

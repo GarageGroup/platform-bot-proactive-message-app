@@ -23,8 +23,7 @@ partial class ConversationContinueFunc
     private async ValueTask<Result<Unit, ConversationContinueFailure>> InnerInvokeAsync(
         ConversationContinueIn input, CancellationToken cancellationToken)
     {
-        var adapter = lazyAdapter.Value;
-        await adapter.ContinueConversationAsync(option.BotId, input.Reference, SendAsync, cancellationToken).ConfigureAwait(false);
+        await lazyAdapter.Value.ContinueConversationAsync(botAppId, input.Reference, SendAsync, cancellationToken).ConfigureAwait(false);
 
         return Result.Success<Unit>(default);
 
