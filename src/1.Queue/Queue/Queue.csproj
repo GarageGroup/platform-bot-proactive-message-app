@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>GGroupp.Platrom.Bot.ProactiveMessage.Send</RootNamespace>
+    <AssemblyName>GGroupp.Platrom.Bot.ProactiveMessage.Send.Queue</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\2.Logic\Logic.InOut\Logic.InOut.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EarlyFuncPack.Core.AsyncPipeline" Version="0.2.0" />
+    <PackageReference Include="GGroupp.Infra.Azure.WebJobs.Storage.Queues.Abstractions" Version="1.0.0" />
+    <PackageReference Include="PrimeFuncPack.Core.Func.Abstractions.AsyncValue" Version="2.0.0" />
+    <PackageReference Include="PrimeFuncPack.Dependency.Core" Version="2.0.2" />
+  </ItemGroup>
+
+</Project>
