@@ -11,12 +11,12 @@ namespace GGroupp.Platrom.Bot.ProactiveMessage.Send;
 
 internal static class AppHostBuilder
 {
-    internal static IHostBuilder ConfigureMessageSendQueueHandler(this IHostBuilder builder)
+    internal static IHostBuilder ConfigureMessageSendQueueProcessor(this IHostBuilder builder)
         =>
         builder.ConfigureQueueProcessor(
             UseMessageSendQueueItemHandler().Resolve);
 
-    private static Dependency<IQueueItemProcessor> UseMessageSendQueueItemHandler()
+    private static Dependency<IQueueItemHandler> UseMessageSendQueueItemHandler()
         =>
         PrimaryHandler.UseStandardSocketsHttpHandler()
         .UseLogging(

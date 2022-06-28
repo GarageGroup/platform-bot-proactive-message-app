@@ -8,10 +8,10 @@ using IMessageSendFunc = IAsyncValueFunc<MessageSendIn, Result<Unit, MessageSend
 
 public static class MessageSendQueueDependency
 {
-    public static Dependency<IQueueItemProcessor> UseMessageSendQueue(this Dependency<IMessageSendFunc> dependency)
+    public static Dependency<IQueueItemHandler> UseMessageSendQueue(this Dependency<IMessageSendFunc> dependency)
     {
         _ = dependency ?? throw new ArgumentNullException(nameof(dependency));
 
-        return dependency.Map<IQueueItemProcessor>(MessageQueueItemProcessor.Create);
+        return dependency.Map<IQueueItemHandler>(MessageQueueItemHandler.Create);
     }
 }
