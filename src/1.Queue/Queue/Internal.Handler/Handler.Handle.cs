@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 
 namespace GGroupp.Platrom.Bot.ProactiveMessage.Send;
 
-partial class MessageQueueItemProcessor
+partial class MessageQueueItemHandler
 {
-    public ValueTask<Result<Unit, QueueItemFailure>> ProcessAsync(QueueItemIn input, CancellationToken cancellationToken = default)
+    public ValueTask<Result<Unit, QueueItemFailure>> HandleAsync(QueueItemIn input, CancellationToken cancellationToken = default)
         =>
         AsyncPipeline.Pipe(
             input, cancellationToken)
