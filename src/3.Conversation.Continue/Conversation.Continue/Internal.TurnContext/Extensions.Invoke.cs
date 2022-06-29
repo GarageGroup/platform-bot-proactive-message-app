@@ -9,22 +9,12 @@ namespace GGroupp.Platrom.Bot.ProactiveMessage.Send;
 partial class TurnContextExtensions
 {
     internal static Task InvokeAsync(this ITurnContext turnContext, IActivity activity, ILogger? logger, CancellationToken cancellationToken)
-    {
-        if (string.IsNullOrEmpty(activity.Id))
+        =>
+        string.IsNullOrEmpty(activity.Id) switch
         {
-            return turnContext.SendActivityAsync(activity, cancellationToken);
-        }
-
-        if (activity.IsChannelSuportedDeleting() is false)
-        {
-            logger?.LogWarning("The channel {channelId} is not supported to delete an activity", activity.ChannelId);
-
-            activity.Id = null;
-            return turnContext.SendActivityAsync(activity, cancellationToken);
-        }
-
-        return turnContext.DeleteAndSendAsync(activity, logger, cancellationToken);
-    }
+            true    => turnContext.SendActivityAsync(activity, cancellationToken),
+            _       => turnContext.DeleteAndSendAsync(activity, logger, cancellationToken)
+        };
 
     private static Task DeleteAndSendAsync(this ITurnContext context, IActivity activity, ILogger? logger, CancellationToken cancellationToken)
     {
