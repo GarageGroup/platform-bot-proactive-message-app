@@ -29,6 +29,6 @@ partial class ConversationContinueFunc
 
         Task SendAsync(ITurnContext turnContext, CancellationToken cancellationToken)
             =>
-            turnContext.SendActivityAsync(input.Activity, cancellationToken);
+            turnContext.InvokeAsync(input.Activity, logger, cancellationToken);
     }
 }
