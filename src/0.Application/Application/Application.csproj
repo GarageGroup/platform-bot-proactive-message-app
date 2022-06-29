@@ -9,7 +9,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <RootNamespace>GGroupp.Platrom.Bot.ProactiveMessage.Send</RootNamespace>
     <AssemblyName>GGroupp.Platrom.Bot.ProactiveMessage.Send.Application</AssemblyName>
-    <Version>1.0.0-preview.5</Version>
+    <Version>1.0.0-preview.6</Version>
   </PropertyGroup>
 
   <ItemGroup>

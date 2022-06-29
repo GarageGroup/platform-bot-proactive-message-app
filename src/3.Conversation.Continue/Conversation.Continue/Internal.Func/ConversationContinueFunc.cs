@@ -21,12 +21,16 @@ internal sealed partial class ConversationContinueFunc : IConversationContinueFu
 
     private readonly Lazy<BotAdapter> lazyAdapter;
 
+    private readonly ILogger? logger;
+
     private readonly string botAppId;
 
     private ConversationContinueFunc(
         IConfiguration configuration, ISocketsHttpHandlerProvider? handlerProvider, ILoggerFactory? loggerFactory)
     {
         lazyAdapter = new(CreateBotAdapter);
+
+        logger = loggerFactory?.CreateLogger<ConversationContinueFunc>();
         botAppId = configuration.GetValue("MicrosoftAppId", string.Empty);
 
         BotAdapter CreateBotAdapter()
@@ -35,9 +39,7 @@ internal sealed partial class ConversationContinueFunc : IConversationContinueFu
     }
 
     private static BotAdapter InnerCreateBotAdapter(
-        IConfiguration configuration,
-        ISocketsHttpHandlerProvider? handlerProvider,
-        ILoggerFactory? loggerFactory)
+        IConfiguration configuration, ISocketsHttpHandlerProvider? handlerProvider, ILoggerFactory? loggerFactory)
     {
         var authentication = new ConfigurationBotFrameworkAuthentication(
             configuration: configuration,
