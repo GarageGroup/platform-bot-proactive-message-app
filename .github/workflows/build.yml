@@ -1,6 +1,7 @@
 name: Build Func Application
 on:
   push:
+    branches: [ '**' ]
 
 jobs:
   build:
