@@ -11,12 +11,7 @@ namespace GGroupp.Platrom.Bot.ProactiveMessage.Send;
 
 internal static class AppHostBuilder
 {
-    internal static IHostBuilder ConfigureMessageSendQueueProcessor(this IHostBuilder builder)
-        =>
-        builder.ConfigureQueueProcessor(
-            UseMessageSendQueueItemHandler().Resolve);
-
-    private static Dependency<IQueueItemHandler> UseMessageSendQueueItemHandler()
+    internal static IHostBuilder ConfigureMessageSendQueueProcessor(this IHostBuilder hostBuilder)
         =>
         PrimaryHandler.UseStandardSocketsHttpHandler()
         .UseLogging(
@@ -27,7 +22,9 @@ internal static class AppHostBuilder
         .With(
             Dependency.From(GetConfiguration).UseConversationContinueApi())
         .UseMessageSendLogic()
-        .UseMessageSendQueue();
+        .UseMessageSendQueue()
+        .ConfigureQueueProcessor(
+            hostBuilder);
 
     private static IConfiguration GetConfiguration(this IServiceProvider serviceProvider)
         =>

@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="EarlyFuncPack.Core.AsyncPipeline" Version="0.2.0" />
-    <PackageReference Include="GGroupp.Infra.Azure.WebJobs.Storage.Queues.Abstractions" Version="1.1.0" />
+    <PackageReference Include="GGroupp.Infra.Azure.WebJobs.Storage.Queues.Abstractions" Version="1.2.0" />
     <PackageReference Include="PrimeFuncPack.Core.Func.Abstractions.AsyncValue" Version="2.0.0" />
     <PackageReference Include="PrimeFuncPack.Dependency.Core" Version="2.0.2" />
   </ItemGroup>
