@@ -23,7 +23,7 @@ internal static class AppHostBuilder
             Dependency.From(GetConfiguration).UseConversationContinueApi())
         .UseMessageSendLogic()
         .UseMessageSendQueue()
-        .ConfigureQueueProcessor(
+        .ConfigureBusQueueProcessor(
             hostBuilder);
 
     private static IConfiguration GetConfiguration(this IServiceProvider serviceProvider)
