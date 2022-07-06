@@ -9,7 +9,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <RootNamespace>GGroupp.Platrom.Bot.ProactiveMessage.Send</RootNamespace>
     <AssemblyName>GGroupp.Platrom.Bot.ProactiveMessage.Send.Application</AssemblyName>
-    <Version>1.0.0-preview.10</Version>
+    <Version>1.0.0-preview.11</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,7 +28,6 @@
   <ItemGroup>
     <PackageReference Include="GGroupp.Infra.Azure.WebJobs.Logging" Version="1.0.0" />
     <PackageReference Include="GGroupp.Infra.Azure.WebJobs.Queues.ServiceBus" Version="1.0.2" />
-    <PackageReference Include="GGroupp.Infra.Azure.WebJobs.Queues.Storage" Version="1.3.0" />
     <PackageReference Include="GGroupp.Infra.Bot.Builder.Integration.CosmosApi" Version="1.0.0" />
     <PackageReference Include="GGroupp.Infra.Http.SocketsHandlerProvider" Version="2.3.0" />
   </ItemGroup>
