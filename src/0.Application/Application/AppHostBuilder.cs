@@ -13,22 +13,6 @@ internal static class AppHostBuilder
 {
     internal static IHostBuilder ConfigureMessageSendQueueProcessor(this IHostBuilder hostBuilder)
         =>
-        IsServiceBusUsed() switch
-        {
-            true    => UseMessageSendQueue().ConfigureBusQueueProcessor(hostBuilder),
-            _       => UseMessageSendQueue().ConfigureQueueProcessor(hostBuilder)
-        };
-
-    private static bool IsServiceBusUsed()
-        =>
-        new ConfigurationBuilder()
-        .AddJsonFile("appsettings.json")
-        .AddEnvironmentVariables()
-        .Build()
-        .GetValue("Feature:IsServiceBusUsed", false);
-
-    private static Dependency<IQueueItemHandler> UseMessageSendQueue()
-        =>
         PrimaryHandler.UseStandardSocketsHttpHandler()
         .UseLogging(
             sp => sp.GetRequiredService<ILoggerFactory>().CreateLogger("ProactiveMessageSend"))
@@ -38,7 +22,9 @@ internal static class AppHostBuilder
         .With(
             Dependency.From(GetConfiguration).UseConversationContinueApi())
         .UseMessageSendLogic()
-        .UseMessageSendQueue();
+        .UseMessageSendQueue()
+        .ConfigureQueueProcessor(
+            hostBuilder);
 
     private static IConfiguration GetConfiguration(this IServiceProvider serviceProvider)
         =>
